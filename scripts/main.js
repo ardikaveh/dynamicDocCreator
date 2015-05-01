@@ -1,21 +1,22 @@
-
 $(function () {
 	"use strict";
 	var startX,
 		startY,
 		selectedBoxes = [],
+		metaArray = [],
+		activePosition,
 		$selectionMarquee = $('#selectionMarquee'),
+		$metaBox = $('#meta'),
+		$metaBoxInput = $('#meta'),
 		$allCords = $('#all-cords'),
 		positionBox = function ($box, coordinates) {
-			$box.css(
-				'top', coordinates.top
-			).css(
-				'left', coordinates.left
-			).css(
-				'height', coordinates.bottom - coordinates.top
-			).css(
-				'width', coordinates.right - coordinates.left
-			);
+			$box.css('top', coordinates.top).css('left', coordinates.left)
+				.css('height', coordinates.bottom - coordinates.top)
+				.css('width', coordinates.right - coordinates.left);
+		},
+
+		setBox = function ($box, coordinates) {
+			$box.css('top', coordinates.bottom).css('left', coordinates.right);
 		},
 
 		compareNumbers = function (a, b) {
@@ -40,25 +41,44 @@ $(function () {
 		displayCoordinates = function () {
 			var msg = 'Boxes so far:\n';
 
-			selectedBoxes.forEach(function (box) {
-			    var box_left        = box.left - $('#docImage').offset().left
-			        , box_top       = box.top - $('#docImage').offset().top
-			        , box_right     = box.right - $('#docImage').offset().left 
-			        , box_bottom    = box.bottom - $('#docImage').offset().top
+			metaArray.forEach(function (meta) {
+			    var box_left        = meta.position.left - $('#docImage').offset().left
+			        , box_top       = meta.position.top - $('#docImage').offset().top
+			        , box_right     = meta.position.right - $('#docImage').offset().left 
+			        , box_bottom    = meta.position.bottom - $('#docImage').offset().top
 		
-				msg += '<li>(' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
+				msg += '<li>['+meta.name +',' + meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
 			});
 			$allCords.html(msg);
+		},
+		displayMetaBox = function (position){
+			$metaBox.show()
+			setBox($metaBox, position);
 		};
 
 	//events
+	$metaBox.find('input').on("blur", function(event) {
+
+		var meta = {
+			name: this.name,
+			value: this.value,
+			position: activePosition
+		}
+		metaArray.push(meta)	
+		displayCoordinates();
+		this.value = ""
+		$metaBox.hide()
+	})
+
 	$(document).on('mousedown', function (event) {
 		startX = event.pageX
 		startY = event.pageY
 		positionBox($selectionMarquee, getBoxCoordinates(startX, startY, startX, startY));
 		$selectionMarquee.show();
 		$(this).on('mousemove', trackMouse);
-	}).on('mouseup', function (event) {
+	})
+
+	$(document).on('mouseup', function (event) {
 		var position
 		, $selectedBox
 		, endX = event.pageX
@@ -66,7 +86,7 @@ $(function () {
 
 		$selectionMarquee.hide();
 
-		position = getBoxCoordinates(startX, startY, endX, endY);
+		activePosition = position = getBoxCoordinates(startX, startY, endX, endY);
 
 		if (position.left !== position.right && position.top !== position.bottom) {
 			$selectedBox = $('<div class="selected-box"></div>');
@@ -78,8 +98,8 @@ $(function () {
 			$selectedBox.show();
 
 			selectedBoxes.push(position);
-			displayCoordinates();
-			displayMeta(position);
+			
+			displayMetaBox(position);
 			$(this).off('mousemove', trackMouse);
 		}
 	});
