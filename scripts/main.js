@@ -51,7 +51,7 @@ $(function () {
 			$allCords.html(msg);
 		};
 
-
+	//events
 	$(document).on('mousedown', function (event) {
 		startX = event.pageX
 		startY = event.pageY
@@ -60,26 +60,27 @@ $(function () {
 		$(this).on('mousemove', trackMouse);
 	}).on('mouseup', function (event) {
 		var position
-			, $selectedBox
-            , endX = event.pageX
-            , endY = event.pageY
-            
-			$selectionMarquee.hide();
+		, $selectedBox
+		, endX = event.pageX
+		, endY = event.pageY
 
-			position = getBoxCoordinates(startX, startY, endX, endY);
+		$selectionMarquee.hide();
 
-			if (position.left !== position.right && position.top !== position.bottom) {
-				$selectedBox = $('<div class="selected-box"></div>');
-				$selectedBox.hide();
-				$('body').append($selectedBox);
+		position = getBoxCoordinates(startX, startY, endX, endY);
 
-				positionBox($selectedBox, position);
+		if (position.left !== position.right && position.top !== position.bottom) {
+			$selectedBox = $('<div class="selected-box"></div>');
+			$selectedBox.hide();
+			$('body').append($selectedBox);
 
-				$selectedBox.show();
+			positionBox($selectedBox, position);
 
-				selectedBoxes.push(position);
-				displayCoordinates();
-				$(this).off('mousemove', trackMouse);
-			}
+			$selectedBox.show();
+
+			selectedBoxes.push(position);
+			displayCoordinates();
+			displayMeta(position);
+			$(this).off('mousemove', trackMouse);
+		}
 	});
 });
