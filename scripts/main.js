@@ -56,12 +56,29 @@ $(function () {
 			$metaBox.show()
 			$metaBox.find('input').focus()
 			setBox($metaBox, position);
+		}
+		, //display functions
+		buildFillableForm = function() {
+			var inputFields = ""
+			metaArray.forEach(function (meta) {
+				inputFields += '<div>' + meta.value + ' <input name="' + meta.id + '"/></div>'
+			});
+			return inputFields;
 		};
 
-	//events
+	//capture events
+	$('#doneCapture').on("click", function (event) {
+		$('#capture').hide()
+		$(".selected-box").hide()
+		$('#display').show()
+		$('#display').html(buildFillableForm())
+
+	})
+
 	$metaBox.find('input').on("blur", function(event) {
 		var meta = {
 			//name: this.name,
+			id: "" + activePosition.top + activePosition.right + activePosition.bottom + activePosition.left,
 			value: this.value,
 			position: activePosition
 		}
