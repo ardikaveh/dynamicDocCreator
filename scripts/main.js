@@ -20,7 +20,6 @@ $(function () {
 		positionMetaBox = function ($box, coordinates) {
 			$box.css('top', coordinates.bottom).css('left', coordinates.right);
 		},
-
 		compareNumbers = function (a, b) {
 			return a - b;
 		},
