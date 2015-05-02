@@ -77,7 +77,7 @@ $(function () {
 	$metaBox.find('input').on("blur", function(event) {
 		var meta = {
 			//name: this.name,
-			id: "" + activePosition.top + activePosition.right + activePosition.bottom + activePosition.left,
+			id: activePosition.top +"-"+ activePosition.right +"-"+ activePosition.bottom +"-"+ activePosition.left,
 			value: this.value,
 			position: activePosition
 		}
@@ -137,5 +137,35 @@ $(function () {
 	//fill events	
 	$('#doneFill').on("click", function (event) {
 		$('#fill').hide()
+		$('#fill div :input').serializeArray()
+		$('#view').show()
+
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext("2d");
+		var imageObj = new Image();
+		imageObj.onload = function(){
+
+			canvas.height = imageObj.height
+			canvas.width = imageObj.width
+			context.drawImage(imageObj, 0, 0);
+			context.font = "20pt Calibri";
+			context.fillStyle = "blue"
+			//context.fillText("My TEXT!", 120, 120);
+
+			metaArray.forEach(function (meta) {
+				context.fillText(meta.value, meta.position.left-10, meta.position.bottom+40);
+			});
+
+
+			// save canvas image as data url (png format by default)
+			//var dataURL = canvas.toDataURL();
+
+			// set canvasImg image src to dataURL
+			// so it can be saved as an image
+			//document.getElementById('canvasImg').src = dataURL;
+
+		};
+		imageObj.src = "http://img.docstoccdn.com/thumb/orig/40282709.png"; 
+
 	})
 });
