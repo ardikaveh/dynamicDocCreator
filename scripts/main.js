@@ -177,7 +177,6 @@ $(function () {
 
 		};
 		imageObj.src = imgUrl; 
-
 	})
 
 	Array.prototype.get = function(name) {
