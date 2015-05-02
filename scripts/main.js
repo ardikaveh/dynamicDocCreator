@@ -116,8 +116,8 @@ $(function () {
 		, endY = event.pageY
 
 		$selectionMarquee.hide();
-
-		activePosition = position = getBoxCoordinates(startX, startY, endX, endY);
+		position = getBoxCoordinates(startX, startY, endX, endY);
+		activePosition = getBoxCoordinates(startX  - $('#docImage').offset().left, startY - $('#docImage').offset().top, endX - $('#docImage').offset().left, endY - $('#docImage').offset().top);
 
 		if (position.left !== position.right && position.top !== position.bottom) {
 			$selectedBox = $('<div class="selected-box"></div>');
@@ -127,7 +127,7 @@ $(function () {
 			positionBox($selectedBox, position);
 
 			$selectedBox.show();
-			selectedBoxes.push(position);
+			selectedBoxes.push(activePosition);
 			
 			displayMetaBox(position);
 			$(this).off('mousemove', trackMouse);
@@ -150,10 +150,13 @@ $(function () {
 			context.drawImage(imageObj, 0, 0);
 			context.font = "20pt Calibri";
 			context.fillStyle = "blue"
-			//context.fillText("My TEXT!", 120, 120);
-
+			
 			metaArray.forEach(function (meta) {
-				context.fillText(meta.value, meta.position.left-10, meta.position.bottom+40);
+				//context.fillText("My TEXT!", 120, 120);
+				//canvas is full size so we need to factor ratio
+				var x = (canvas.width/canvas.offsetWidth)*meta.position.left
+				var y = (canvas.height/canvas.offsetHeight)*meta.position.bottom
+				context.fillText(meta.value, x, y);
 			});
 
 
