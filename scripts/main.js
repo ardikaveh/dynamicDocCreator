@@ -39,6 +39,7 @@ $(function () {
 			console.log(position);
 			positionBox($selectionMarquee, position);
 		},
+		
 // 		displayCoordinates = function () {
 // 			var msg = 'Boxes so far:\n';
 
@@ -162,6 +163,11 @@ $(function () {
 			//document.getElementById('canvasImg').src = dataURL;
 		};
 		imageObj.src = imgUrl; 
+	})
+
+	//view events
+	$('#doneView').on("click", function (event) {
+		location.reload()
 	})
 
 	Array.prototype.get = function(name) {

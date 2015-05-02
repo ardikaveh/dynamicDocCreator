@@ -55,9 +55,6 @@ button#doneCapture {
 }
 
 button#doneFill{
-    display: block;
-    margin: auto;
-    margin-top: 20px;
 }
 
 div#fill {
@@ -79,9 +76,11 @@ div#fill {
 }
 
 #fill input {
-    width: 350px;
-    right: 0;
-    position: absolute;
+    width: 70%;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid rgb(208, 208, 208);
+    display: inline-block;
 }
 
 canvas#canvas {
@@ -109,11 +108,23 @@ input#imgUrl {
 }
 
 button {
+    display: block;
     padding: 10px 20px;
     cursor: pointer;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .selected-box span {
     vertical-align: middle;
     display: table-cell;
+}
+
+#fill div span {
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    box-sizing: border-box;
+    vertical-align: middle;
 }
