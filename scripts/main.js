@@ -174,10 +174,8 @@ $(function () {
 			// set canvasImg image src to dataURL
 			// so it can be saved as an image
 			//document.getElementById('canvasImg').src = dataURL;
-
 		};
 		imageObj.src = imgUrl; 
-
 	})
 
 	Array.prototype.get = function(name) {
