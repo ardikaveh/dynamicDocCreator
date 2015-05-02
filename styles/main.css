@@ -97,3 +97,9 @@ canvas#canvas {
 div#view {
     display: none;
 }
+
+input#imgUrl {
+    margin: auto;
+    display: block;
+    width: 344px;
+}
