@@ -49,3 +49,33 @@ button#doneCapture {
     margin: auto;
     margin-top: 20px;
 }
+
+button#doneFill{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+}
+
+div#fill {
+    width: 500px;
+    margin: auto;
+    background-color: rgb(240, 240, 240);
+    border: solid 1px rgb(179, 179, 179);
+    /* min-height: 200px; */
+    border-radius: 5px;
+    display: none;
+    padding: 15px 10px 20px 10px;
+    margin-top: 100px;
+}
+
+#fill div {
+    margin: 10px 20px;
+    position: relative;
+    /* text-align: right; */
+}
+
+#fill input {
+    width: 350px;
+    right: 0;
+    position: absolute;
+}

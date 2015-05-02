@@ -61,7 +61,7 @@ $(function () {
 		buildFillableForm = function() {
 			var inputFields = ""
 			metaArray.forEach(function (meta) {
-				inputFields += '<div>' + meta.value + ' <input name="' + meta.id + '"/></div>'
+				inputFields += '<div><span>' + meta.value + '</span><input name="' + meta.id + '"/></div>'
 			});
 			return inputFields;
 		};
@@ -70,9 +70,8 @@ $(function () {
 	$('#doneCapture').on("click", function (event) {
 		$('#capture').hide()
 		$(".selected-box").hide()
-		$('#display').show()
-		$('#display').html(buildFillableForm())
-
+		$('#fill').show()
+		$('#fill').prepend(buildFillableForm())
 	})
 
 	$metaBox.find('input').on("blur", function(event) {
@@ -133,5 +132,10 @@ $(function () {
 			displayMetaBox(position);
 			$(this).off('mousemove', trackMouse);
 		}
-	});
+	})
+
+	//fill events	
+	$('#doneFill').on("click", function (event) {
+		$('#fill').hide()
+	})
 });
