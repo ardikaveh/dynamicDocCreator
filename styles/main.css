@@ -11,13 +11,16 @@ body {
 	cursor: crosshair;
 	z-index: 1000;
 	position: absolute;
-	border: 2px dashed orange;
+	border: 1px dashed orange;
 }
 
 .selected-box {
 	z-position: 999;
 	position: absolute;
-	border: 2px dashed red;
+	border: 1px dashed rgb(71, 140, 30);
+	text-align: center;
+	color: rgba(89, 128, 84, 0.43);
+	display: table;
 }
 #all-cords {
 	position: fixed;
@@ -108,4 +111,9 @@ input#imgUrl {
 button {
     padding: 10px 20px;
     cursor: pointer;
+}
+
+.selected-box span {
+    vertical-align: middle;
+    display: table-cell;
 }

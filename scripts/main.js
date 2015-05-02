@@ -7,9 +7,9 @@ $(function () {
 		selectedBoxes = [],
 		metaArray = [],
 		activePosition,
+		activeId,
 		$selectionMarquee = $('#selectionMarquee'),
 		$metaBox = $('#meta'),
-		$metaBoxInput = $('#meta'),
 		$allCords = $('#all-cords'),
 		positionBox = function ($box, coordinates) {
 			$box.css('top', coordinates.top).css('left', coordinates.left)
@@ -17,7 +17,7 @@ $(function () {
 				.css('width', coordinates.right - coordinates.left);
 		},
 
-		setBox = function ($box, coordinates) {
+		positionMetaBox = function ($box, coordinates) {
 			$box.css('top', coordinates.bottom).css('left', coordinates.right);
 		},
 
@@ -40,23 +40,23 @@ $(function () {
 			console.log(position);
 			positionBox($selectionMarquee, position);
 		},
-		displayCoordinates = function () {
-			var msg = 'Boxes so far:\n';
+// 		displayCoordinates = function () {
+// 			var msg = 'Boxes so far:\n';
 
-			metaArray.forEach(function (meta) {
-			    var box_left        = meta.position.left - $('#docImage').offset().left
-			        , box_top       = meta.position.top - $('#docImage').offset().top
-			        , box_right     = meta.position.right - $('#docImage').offset().left 
-			        , box_bottom    = meta.position.bottom - $('#docImage').offset().top
+// 			metaArray.forEach(function (meta) {
+// 			    var box_left        = meta.position.left
+// 			        , box_top       = meta.position.top
+// 			        , box_right     = meta.position.right
+// 			        , box_bottom    = meta.position.bottom 
 		
-				msg += '<li>['+ meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
-			});
-			$allCords.html(msg);
-		},
+// 				msg += '<li>['+ meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
+// 			});
+// 			$allCords.html(msg);
+// 		},
 		displayMetaBox = function (position){
 			$metaBox.show()
 			$metaBox.find('input').focus()
-			setBox($metaBox, position);
+			positionMetaBox($metaBox, position);
 		}
 		, //display functions
 		buildFillableForm = function() {
@@ -83,29 +83,19 @@ $(function () {
 	$metaBox.find('input').on("blur", function(event) {
 		var meta = {
 			//name: this.name,
-			id: activePosition.top +"-"+ activePosition.right +"-"+ activePosition.bottom +"-"+ activePosition.left,
+			id: activeId,
 			value: this.value,
 			position: activePosition
 		}
+		$("#"+activeId).html("<span>"+this.value+"</span>")
 		metaArray.push(meta)	
-		displayCoordinates();
+		//displayCoordinates();
 		this.value = ""
 		$metaBox.hide()
 	})
 
-	$('#docImage').on("mouseenter", function (event) {
-		captureActive = true;
-	})
-
-	$('#docImage').on("mouseleave", function (event) {
-		if($(event.relatedTarget).attr('id') == "capture" || $(event.toElement).attr('id') == "capture")
-			captureActive = false;	
-	})
-
-	$(document).on('mousedown', function (event) {
-		
-		if(!captureActive)
-			return
+	$('#docImage').on('mousedown touchstart', function (event) {
+		captureActive = true
 		startX = event.pageX
 		startY = event.pageY
 		positionBox($selectionMarquee, getBoxCoordinates(startX, startY, startX, startY));
@@ -113,9 +103,10 @@ $(function () {
 		$(this).on('mousemove', trackMouse);
 	})
 
-	$(document).on('mouseup', function (event) {
+	$selectionMarquee.on('mouseup touchend', function (event) {
 		if(!captureActive)
 			return
+		captureActive = false
 		var position
 		, $selectedBox
 		, endX = event.pageX
@@ -124,17 +115,14 @@ $(function () {
 		$selectionMarquee.hide();
 		position = getBoxCoordinates(startX, startY, endX, endY);
 		activePosition = getBoxCoordinates(startX  - $('#docImage').offset().left, startY - $('#docImage').offset().top, endX - $('#docImage').offset().left, endY - $('#docImage').offset().top);
-
+		activeId = activePosition.top +"-"+ activePosition.right +"-"+ activePosition.bottom +"-"+ activePosition.left
 		if (position.left !== position.right && position.top !== position.bottom) {
-			$selectedBox = $('<div class="selected-box"></div>');
+			$selectedBox = $('<div class="selected-box" id="'+ activeId +'"></div>');
 			$selectedBox.hide();
 			$('body').append($selectedBox);
-
 			positionBox($selectedBox, position);
-
 			$selectedBox.show();
 			selectedBoxes.push(activePosition);
-			
 			displayMetaBox(position);
 			$(this).off('mousemove', trackMouse);
 		}
@@ -143,7 +131,6 @@ $(function () {
 	//fill events	
 	$('#doneFill').on("click", function (event) {
 		$('#fill').hide()
-		
 		$('#view').show()
 
 		var canvas = document.getElementById("canvas");
