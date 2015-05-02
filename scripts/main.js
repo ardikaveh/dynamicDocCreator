@@ -2,6 +2,7 @@ $(function () {
 	"use strict";
 	var startX,
 		startY,
+		imgUrl = "http://img.docstoccdn.com/thumb/orig/40282709.png",
 		captureActive,
 		selectedBoxes = [],
 		metaArray = [],
@@ -74,6 +75,11 @@ $(function () {
 		$('#fill').prepend(buildFillableForm())
 	})
 
+	$('#imgUrl').on("change", function (event) {
+		imgUrl = this.value
+		$('#docImage').css("background-image", "url("+imgUrl+")");  
+	})
+
 	$metaBox.find('input').on("blur", function(event) {
 		var meta = {
 			//name: this.name,
@@ -137,7 +143,7 @@ $(function () {
 	//fill events	
 	$('#doneFill').on("click", function (event) {
 		$('#fill').hide()
-		$('#fill div :input').serializeArray()
+		
 		$('#view').show()
 
 		var canvas = document.getElementById("canvas");
@@ -152,11 +158,13 @@ $(function () {
 			context.fillStyle = "blue"
 			
 			metaArray.forEach(function (meta) {
-				//context.fillText("My TEXT!", 120, 120);
+				var filledForm = $('#fill div :input').serializeArray()
+				var value = filledForm.get(meta.id)
+				
 				//canvas is full size so we need to factor ratio
 				var x = (canvas.width/canvas.offsetWidth)*meta.position.left
 				var y = (canvas.height/canvas.offsetHeight)*meta.position.bottom
-				context.fillText(meta.value, x, y);
+				context.fillText(value, x, y);
 			});
 
 
@@ -168,7 +176,14 @@ $(function () {
 			//document.getElementById('canvasImg').src = dataURL;
 
 		};
-		imageObj.src = "http://img.docstoccdn.com/thumb/orig/40282709.png"; 
+		imageObj.src = imgUrl; 
 
 	})
+
+	Array.prototype.get = function(name) {
+    for (var i=0, len=this.length; i<len; i++) {
+        if (typeof this[i] != "object") continue;
+        if (this[i].name === name) return this[i].value;
+    }
+};
 });
