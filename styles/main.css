@@ -40,5 +40,12 @@ body {
 	background: rgb(223, 223, 223);
 	padding: 5px;
 	border-radius: 5px;
+	border: solid 1px grey;
 	display: none;
+}
+
+button#doneCapture {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
 }

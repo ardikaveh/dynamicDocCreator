@@ -2,6 +2,7 @@ $(function () {
 	"use strict";
 	var startX,
 		startY,
+		captureActive,
 		selectedBoxes = [],
 		metaArray = [],
 		activePosition,
@@ -47,20 +48,20 @@ $(function () {
 			        , box_right     = meta.position.right - $('#docImage').offset().left 
 			        , box_bottom    = meta.position.bottom - $('#docImage').offset().top
 		
-				msg += '<li>['+meta.name +',' + meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
+				msg += '<li>['+ meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
 			});
 			$allCords.html(msg);
 		},
 		displayMetaBox = function (position){
 			$metaBox.show()
+			$metaBox.find('input').focus()
 			setBox($metaBox, position);
 		};
 
 	//events
 	$metaBox.find('input').on("blur", function(event) {
-
 		var meta = {
-			name: this.name,
+			//name: this.name,
 			value: this.value,
 			position: activePosition
 		}
@@ -70,7 +71,19 @@ $(function () {
 		$metaBox.hide()
 	})
 
+	$('#docImage').on("mouseenter", function (event) {
+		captureActive = true;
+	})
+
+	$('#docImage').on("mouseleave", function (event) {
+		if($(event.relatedTarget).attr('id') == "capture" || $(event.toElement).attr('id') == "capture")
+			captureActive = false;	
+	})
+
 	$(document).on('mousedown', function (event) {
+		
+		if(!captureActive)
+			return
 		startX = event.pageX
 		startY = event.pageY
 		positionBox($selectionMarquee, getBoxCoordinates(startX, startY, startX, startY));
@@ -79,6 +92,8 @@ $(function () {
 	})
 
 	$(document).on('mouseup', function (event) {
+		if(!captureActive)
+			return
 		var position
 		, $selectedBox
 		, endX = event.pageX
@@ -96,7 +111,6 @@ $(function () {
 			positionBox($selectedBox, position);
 
 			$selectedBox.show();
-
 			selectedBoxes.push(position);
 			
 			displayMetaBox(position);
