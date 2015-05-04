@@ -55,8 +55,8 @@ $(function () {
 // 		},
 		displayMetaBox = function (position){
 			$metaBox.show()
-			$metaBox.find('input').focus()
 			positionMetaBox($metaBox, position);
+			$metaBox.find('input').focus()
 		}
 		, //display functions
 		buildFillableForm = function() {
