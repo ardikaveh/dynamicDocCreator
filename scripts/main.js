@@ -114,7 +114,7 @@ $(function () {
 
 		$selectionMarquee.hide();
 		position = getBoxCoordinates(startX, startY, endX, endY);
-		activePosition = getBoxCoordinates(startX  - $('#docImage').offset().left, startY - $('#docImage').offset().top, endX - $('#docImage').offset().left, endY - $('#docImage').offset().top);
+		activePosition = getBoxCoordinates(startX  - Math.round($('#docImage').offset().left), startY - Math.round($('#docImage').offset().top), endX - Math.round($('#docImage').offset().left), endY - Math.round($('#docImage').offset().top));
 		activeId = activePosition.top +"-"+ activePosition.right +"-"+ activePosition.bottom +"-"+ activePosition.left
 		if (position.left !== position.right && position.top !== position.bottom) {
 			$selectedBox = $('<div class="selected-box" id="'+ activeId +'"></div>');
