@@ -1,24 +1,47 @@
 <!doctype html>
 <head>
-<link href="./styles/main.css" rel="stylesheet">
+	<link href="./styles/main.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 </head>
-<div id="capture">
-	<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url"/>
-	<p>Click and drag to create coordinate selections</p>
-	<div id='docImage'></div>
-	<div id='selectionMarquee'></div>
-	<ol id='all-cords'></ol>
-	<div id='meta'>
-		<span>Name </span><input name='metaName'/>
+<header>
+	Create your fillable form!
+</header>
+<div class="documentHead">
+	<div class="urlInput">
+		<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url"/>
 	</div>
-	<button id="doneCapture">Finish</button>
+	<div class="instructions">
+		<span class="asterisk">*</span> Click and drag to create coordinate selections
+	</div>
+	<div class="cb"></div>
+</div>
+<div id="capture">
+	<div class="left col">
+		<button id="doneCapture">Complete & Send</button>
+	</div>
+	<div class="middle col">
+		
+		<div id='docImage'></div>
+		<div id='selectionMarquee'></div>
+		<ol id='all-cords'></ol>
+		<div id='meta'>
+			<span>Field Name </span><input name='metaName'/>
+		</div>
+	</div>
+	<div class="right col">
+		<div class="fieldsHeader">Current Fields</div>
+		<ul>
+			
+		</ul>
+	</div>
+	<div class="cb"></div>
 </div>
 <div id="fill">
 	<button id="doneFill">Finish</button>
 </div>
 <div id="view">
-	<canvas id="canvas"></canvas>
 	<button id="doneView">Again</button>
+	<canvas id="canvas"></canvas>
 	<img id="canvasImg" />
 </div>
 

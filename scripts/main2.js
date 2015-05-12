@@ -11,6 +11,7 @@ $(function () {
 		$selectionMarquee = $('#selectionMarquee'),
 		$metaBox = $('#meta'),
 		$allCords = $('#all-cords'),
+		// imgOffset = $(".imgWrapper").offset().top - (+$(".imgWrapper").css("top").slice(0,-2)),
 		positionBox = function ($box, coordinates) {
 			$box.css('top', coordinates.top).css('left', coordinates.left)
 				.css('height', coordinates.bottom - coordinates.top)
@@ -35,7 +36,7 @@ $(function () {
 			};
 		},
 		trackMouse = function (event) {
-			var position = getBoxCoordinates(startX, startY, event.pageX, event.pageY);
+			var position = getBoxCoordinates(startX, startY, event.offsetX, event.offsetY);
 			positionBox($selectionMarquee, position);
 		},
 		
@@ -96,8 +97,8 @@ $(function () {
 
 	$('#docImage').on('mousedown touchstart', function (event) {
 		captureActive = true
-		startX = event.pageX
-		startY = event.pageY
+		startX = event.offsetX 
+		startY = event.offsetY
 		positionBox($selectionMarquee, getBoxCoordinates(startX, startY, startX, startY));
 		$selectionMarquee.show();
 		$(this).on('mousemove', trackMouse);
@@ -108,18 +109,19 @@ $(function () {
 			return
 		captureActive = false
 		var position
+		, metaBoxPosition
 		, $selectedBox
-		, endX = event.pageX
-		, endY = event.pageY
+		, endX = event.offsetX
+		, endY = event.offsetY
 
 		$selectionMarquee.hide();
-		position = getBoxCoordinates(startX, startY, endX, endY);
+		position = getBoxCoordinates(startX, startY, endX, endY );
 		activePosition = getBoxCoordinates(startX  - Math.round($('#docImage').offset().left), startY - Math.round($('#docImage').offset().top), endX - Math.round($('#docImage').offset().left), endY - Math.round($('#docImage').offset().top));
 		activeId = activePosition.top +"-"+ activePosition.right +"-"+ activePosition.bottom +"-"+ activePosition.left
 		if (position.left !== position.right && position.top !== position.bottom) {
 			$selectedBox = $('<div class="selected-box" id="'+ activeId +'"></div>');
 			$selectedBox.hide();
-			$('body').append($selectedBox);
+			$('.imgWrapper').append($selectedBox);
 			positionBox($selectedBox, position);
 			$selectedBox.show();
 			selectedBoxes.push(activePosition);
