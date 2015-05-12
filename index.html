@@ -1,27 +1,39 @@
 <!doctype html>
 <head>
-<link href="./styles/main.css" rel="stylesheet">
+	<link href="./styles/main.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 </head>
-<div id="capture">
-	<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url"/>
-	<p>Click and drag to create coordinate selections</p>
-	<div id='docImage'></div>
-	<div id='selectionMarquee'></div>
-	<ol id='all-cords'></ol>
-	<div id='meta'>
-		<span>Name </span><input name='metaName'/>
+<body>
+	<header>Create Web Objects</header>
+	<div class="headerBorder"></div>
+	<div class="background"></div>
+	<div id="capture">
+		<div class="left">
+			<div class="subHeading">This service allows anyone to represent paper forms as JSON objects.</div>
+			<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/85480235.png" placeholder="Image Url">
+			<button id="doneCapture">Complete</button>
+			<pre id="outputMeta"></pre>
+		</div>
+		<div class="right">
+			<!--<p>Click and drag to create coordinate selections</p>-->
+			<div id="docImage"></div>
+		</div>
+		<div id="selectionMarquee" style="top: 375px; left: 476px; height: 47px; width: 305px; display: none;"></div>
+		<div id="meta">
+			<span>Name </span><input name="metaName">
+		</div>
+		
 	</div>
-	<button id="doneCapture">Finish</button>
-</div>
-<div id="fill">
-	<button id="doneFill">Finish</button>
-</div>
-<div id="view">
-	<canvas id="canvas"></canvas>
-	<button id="doneView">Again</button>
-	<img id="canvasImg" />
-</div>
-
+	<div id="fill">
+		<button id="doneFill">Finish</button>
+	</div>
+	<div id="view">
+		<div class="explainView">API binds customer data from client service or web form.</div>
+		<canvas id="canvas"></canvas>
+		<img id="canvasImg">
+		<button id="doneView">Play Again</button>
+	</div>
+</body>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="./scripts/main.js"></script>
 
