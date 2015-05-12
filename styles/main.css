@@ -34,7 +34,7 @@ body {
 	background-image: url("http://img.docstoccdn.com/thumb/orig/40282709.png");
 	border: 1px solid rgb(185, 185, 185);
 	cursor: crosshair;
-	/* margin: auto; */
+	margin: auto;
 	box-sizing: border-box;     background-repeat: no-repeat;     
 	background-size: 100% auto;     
 	height: 900px;
@@ -54,7 +54,7 @@ body {
 
 button#doneCapture {
     right: 40px;
-    top: 50px;
+    top: 53px;
     position: absolute;
 }
 
@@ -173,4 +173,17 @@ header {
     display: inline-block;
     box-sizing: border-box;
     float: right;
+}
+
+#outputMeta {
+    position: absolute;    
+    top: 130px;
+    right: 40px;
+    background-color: white;
+    padding:30px;
+    border-radius: 5px;
+    border: solid 1px #D5D5D5;
+    width: 400px;
+    box-sizing: border-box;
+    margin: 0;
 }

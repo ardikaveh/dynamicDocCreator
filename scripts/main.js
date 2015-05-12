@@ -10,7 +10,6 @@ $(function () {
 		activeId,
 		$selectionMarquee = $('#selectionMarquee'),
 		$metaBox = $('#meta'),
-		$allCords = $('#all-cords'),
 		positionBox = function ($box, coordinates) {
 			$box.css('top', coordinates.top).css('left', coordinates.left)
 				.css('height', coordinates.bottom - coordinates.top)
@@ -40,8 +39,8 @@ $(function () {
 			positionBox($selectionMarquee, position);
 		},
 		
-// 		displayCoordinates = function () {
-// 			var msg = 'Boxes so far:\n';
+		displayCoordinates = function () {
+			var msg = 'Boxes so far:\n';
 
 // 			metaArray.forEach(function (meta) {
 // 			    var box_left        = meta.position.left
@@ -51,8 +50,8 @@ $(function () {
 		
 // 				msg += '<li>['+ meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
 // 			});
-// 			$allCords.html(msg);
-// 		},
+			$("#outputMeta").html(JSON.stringify(metaArray,null,2));
+		},
 		displayMetaBox = function (position){
 			$metaBox.show()
 			positionMetaBox($metaBox, position);
@@ -78,6 +77,7 @@ $(function () {
 	$('#imgUrl').on("change", function (event) {
 		imgUrl = this.value
 		$('#docImage').css("background-image", "url("+imgUrl+")");  
+		$('#docImage2').css("background-image", "url("+imgUrl+")"); 
 	})
 
 	$metaBox.find('input').on("blur", function(event) {
@@ -89,7 +89,7 @@ $(function () {
 		}
 		$("#"+activeId).html("<span>"+this.value+"</span>")
 		metaArray.push(meta)	
-		//displayCoordinates();
+		displayCoordinates();
 		this.value = ""
 		$metaBox.hide()
 	})
