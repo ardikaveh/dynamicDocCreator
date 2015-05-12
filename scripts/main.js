@@ -18,7 +18,7 @@ $(function () {
 		},
 
 		positionMetaBox = function ($box, coordinates) {
-			$box.css('top', coordinates.bottom + 6).css('left', coordinates.left);
+			$box.css('top', coordinates.bottom).css('left', coordinates.right);
 		},
 		compareNumbers = function (a, b) {
 			return a - b;
@@ -36,6 +36,7 @@ $(function () {
 		},
 		trackMouse = function (event) {
 			var position = getBoxCoordinates(startX, startY, event.pageX, event.pageY);
+			console.log(position);
 			positionBox($selectionMarquee, position);
 		},
 		
@@ -79,8 +80,7 @@ $(function () {
 		$('#docImage').css("background-image", "url("+imgUrl+")");  
 	})
 
-	$metaBox.find('input').on("blur keyup", function(event) {
-		if (!event.keyCode || event.keyCode != 13) return;
+	$metaBox.find('input').on("blur", function(event) {
 		var meta = {
 			//name: this.name,
 			id: activeId,
@@ -124,10 +124,10 @@ $(function () {
 			$selectedBox.show();
 			selectedBoxes.push(activePosition);
 			displayMetaBox(position);
-			// addField()
 			$(this).off('mousemove', trackMouse);
 		}
 	})
+
 	//fill events	
 	$('#doneFill').on("click", function (event) {
 		$('#fill').hide()

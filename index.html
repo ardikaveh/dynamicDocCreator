@@ -3,48 +3,34 @@
 	<link href="./styles/main.css" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 </head>
-<header>
-	Create your fillable form!
-</header>
-<div class="documentHead">
-	<div class="urlInput">
-		<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url"/>
-	</div>
-	<div class="instructions">
-		<span class="asterisk">*</span> Click and drag to create coordinate selections
-	</div>
-	<div class="cb"></div>
-</div>
-<div id="capture">
-	<div class="left col">
-		<button id="doneCapture">Complete & Send</button>
-	</div>
-	<div class="middle col">
-		
-		<div id='docImage'></div>
-		<div id='selectionMarquee'></div>
-		<ol id='all-cords'></ol>
-		<div id='meta'>
-			<span>Field Name </span><input name='metaName'/>
+<body>
+	<header>Create your fillable form Service!</header>
+	<div class="background"></div>
+	<div id="capture">
+		<div class="left">
+			<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url">
+			<button id="doneCapture">Complete Capture</button>
 		</div>
+		<div class="right">
+			<!--<p>Click and drag to create coordinate selections</p>-->
+			<div id="docImage"></div>
+		</div>
+		<div id="selectionMarquee" style="top: 375px; left: 476px; height: 47px; width: 305px; display: none;"></div>
+		<ol id="all-cords"></ol>
+		<div id="meta">
+			<span>Name </span><input name="metaName">
+		</div>
+		
 	</div>
-	<div class="right col">
-		<div class="fieldsHeader">Current Fields</div>
-		<ul>
-			
-		</ul>
+	<div id="fill">
+		<button id="doneFill">Finish</button>
 	</div>
-	<div class="cb"></div>
-</div>
-<div id="fill">
-	<button id="doneFill">Finish</button>
-</div>
-<div id="view">
-	<button id="doneView">Again</button>
-	<canvas id="canvas"></canvas>
-	<img id="canvasImg" />
-</div>
-
+	<div id="view">
+		<button id="doneView">Again</button>
+		<canvas id="canvas"></canvas>
+		<img id="canvasImg">
+	</div>
+</body>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="./scripts/main.js"></script>
 
