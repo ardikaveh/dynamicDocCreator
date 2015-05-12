@@ -12,21 +12,35 @@ body {
 	margin: 0;
 }
 body > header {
-	padding: 5px 0;
-	font-size: 36px;
+	padding: 21px 26px;
+	font-size: 30px;
 	color: #1b1b1b;
 	width: 60%;
-	margin: 0 auto;
 }
 .middle {
 	margin: 0 auto;
-	width: 60%;
+	width: 65%;
 }
-.left, .right {
-	width: 20%;
-	/* padding-top: 94px; */
-	text-align: center;
-	margin-top: 33px;
+.left {
+	width: 35%;
+}
+.innerLeft {
+	padding: 25px;
+}
+.innerLeft > * {
+	margin: 10px 0;
+}
+.wrapper {
+	background: #F0F0F0;
+	position: relative;
+}
+.imgWrapper {
+	width: 90%;
+	margin: 0 auto 40px; 
+	position: relative;
+	top: -50px;
+	border: 1px solid #1b1b1b;
+	
 }
 .documentHead {
 	padding: 4px 0;
@@ -40,7 +54,7 @@ body > header {
 	font-size: 11px;
 	float: left;
 	/* padding: 2px; */
-	margin-top: 5px;
+	/* margin-top: 5px; */
 }
 .instructions .asterisk {
 	color: #3a9a95;
@@ -63,6 +77,7 @@ body > header {
 	text-align: center;
 	color: rgba(89, 128, 84, 0.43);
 	display: table;
+	z-index: 101;
 }
 #all-cords {
 	position: fixed;
@@ -75,7 +90,14 @@ body > header {
 	cursor: crosshair;
 	box-sizing: border-box;     background-repeat: no-repeat;     
 	background-size: 100% auto;     
-	height: 900px;
+	height: 821px;
+	position: relative;
+	margin: 0 auto;
+	z-index: 100;
+	-moz-box-shadow: 0px 3px 8px rgb(100,100,100); 
+	box-shadow: -5px 5px 5px 0px rgba(54,69,65,.5);
+	-webkit-box-shadow: 0px -3px -40px rgb(100,100,100); 
+	box-shadow: 0 -28px -82px rgb(100,100,100);
 }
 #meta{
 	position:absolute;
@@ -85,6 +107,7 @@ body > header {
 	border-radius: 5px;
 	border: solid 1px grey;
 	display: none;
+	z-index: 101;
 }
 
 button#doneCapture {
@@ -128,8 +151,7 @@ canvas#canvas {
   box-sizing: border-box;
 }
 #capture {
-	background: #051B1B;
-	color: rgb(236, 236, 236);
+	
 }
 #capture p {
     text-align: center;
@@ -154,14 +176,15 @@ input#imgUrl {
 	float: right;
 }
 button {
-	color: #f4f4f4;
-	background: #2BBA91;
+	color: white;
+	border: 1px solid blue;
+	background: rgb(69, 120, 255);
 	font-weight: bold;
 	padding: 8px 25px 8px 25px;
 	font-size: 16px;
 	border-radius: 4px;
 	border: solid 0 #e3edf4;
-	border-bottom: 2px solid #3a9a95;
+	/* border-bottom: 2px solid #3a9a95; */
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border-radius: 4px;

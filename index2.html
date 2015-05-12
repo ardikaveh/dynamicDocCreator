@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+	<link href="./styles/main2.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+</head>
+<header>
+	Create your fillable form!
+</header>
+	
+<div id="capture">
+	<div class="wrapper">
+		<div class="left col">
+			<div class="innerLeft">
+				<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url"/>
+				<button id="doneCapture">Complete & Send</button>
+
+				<div class="instructions">
+					<!-- <span class="asterisk">*</span> Click and drag to create coordinate selections -->
+				</div>
+			</div>
+		</div>
+		<div class="middle col">
+			<div class="imgWrapper">
+				<div id='docImage'></div>
+				<div id='selectionMarquee'></div>
+				<div id='meta'>
+					<span>Field Name </span><input name='metaName'/>
+				</div>
+			</div>
+			<ol id='all-cords'></ol>
+			
+		</div>
+		<div class="cb"></div>
+	</div>
+</div>
+<div id="fill">
+	<button id="doneFill">Finish</button>
+</div>
+<div id="view">
+	<button id="doneView">Again</button>
+	<canvas id="canvas"></canvas>
+	<img id="canvasImg" />
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="./scripts/main2.js"></script>
+
+
