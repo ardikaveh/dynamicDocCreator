@@ -5,11 +5,13 @@
 </head>
 <body>
 	<header>Create Web Objects</header>
+	<div class="headerBorder"></div>
 	<div class="background"></div>
 	<div id="capture">
 		<div class="left">
-			<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/40282709.png" placeholder="Image Url">
-			<button id="doneCapture">Complete Capture</button>
+			<div class="subHeading">This service allows anyone to represent paper forms as JSON objects.</div>
+			<input id="imgUrl" value="http://img.docstoccdn.com/thumb/orig/85480235.png" placeholder="Image Url">
+			<button id="doneCapture">Complete</button>
 			<pre id="outputMeta"></pre>
 		</div>
 		<div class="right">
@@ -26,9 +28,10 @@
 		<button id="doneFill">Finish</button>
 	</div>
 	<div id="view">
-		<button id="doneView">Again</button>
+		<div class="explainView">API binds customer data from client service or web form.</div>
 		<canvas id="canvas"></canvas>
 		<img id="canvasImg">
+		<button id="doneView">Play Again</button>
 	</div>
 </body>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>

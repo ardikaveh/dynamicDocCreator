@@ -2,7 +2,7 @@ $(function () {
 	"use strict";
 	var startX,
 		startY,
-		imgUrl = "http://img.docstoccdn.com/thumb/orig/40282709.png",
+		imgUrl = "http://img.docstoccdn.com/thumb/orig/85480235.png",
 		captureActive,
 		selectedBoxes = [],
 		metaArray = [],
@@ -51,6 +51,9 @@ $(function () {
 // 				msg += '<li>['+ meta.value +'] (' + box_left + ', ' + box_top + ') - (' + (box_left + box_right) + ', ' + (box_top + box_bottom) + ')</li>';
 // 			});
 			$("#outputMeta").html(JSON.stringify(metaArray,null,2));
+			$("#outputMeta").prepend("\n")
+			$("#outputMeta").prepend("// such as OII to web forms\n")
+			$("#outputMeta").prepend("// this JSON is used to bind service entities\n")
 		},
 		displayMetaBox = function (position){
 			$metaBox.show()
@@ -72,6 +75,7 @@ $(function () {
 		$(".selected-box").hide()
 		$('#fill').show()
 		$('#fill').prepend(buildFillableForm())
+		$('#fill').prepend('<div class="explainForm">Auto-generates web form or questionnaire to be hosted as a customer service.</div>')
 	})
 
 	$('#imgUrl').on("change", function (event) {

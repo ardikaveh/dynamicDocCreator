@@ -6,9 +6,11 @@ body {
 	-ms-user-select: none;
 	user-select: none;
 	font-family: 'Muli', sans-serif;
-	background-color: #F0F0F0;
+	background-color: #EDEDED;
 	margin: 0;
 }
+
+body {}
 #selectionMarquee {
 	cursor: crosshair;
 	z-index: 1000;
@@ -31,7 +33,7 @@ body {
 	background: #FFF;
 }
 #docImage {
-	background-image: url("http://img.docstoccdn.com/thumb/orig/40282709.png");
+	background-image: url("http://img.docstoccdn.com/thumb/orig/85480235.png");
 	border: 1px solid rgb(185, 185, 185);
 	cursor: crosshair;
 	margin: auto;
@@ -40,7 +42,7 @@ body {
 	height: 900px;
 	max-width: 700px;
 	box-shadow: -5px 5px 5px 0px rgba(54,69,65,.5);
-	margin-top: -40px;
+	margin-top: -50px;
 }
 #meta{
 	position:absolute;
@@ -55,16 +57,18 @@ body {
 button#doneCapture {
     right: 40px;
     top: 53px;
-    position: absolute;
+    /* position: absolute; */
 }
 
 button#doneFill{
+    margin-left: 331px;
+    margin-top: 26px;
 }
 
 div#fill {
     width: 500px;
     margin: auto;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(255, 255, 255);
     border: solid 1px rgb(179, 179, 179);
     /* min-height: 200px; */
     border-radius: 5px;
@@ -114,7 +118,8 @@ input#imgUrl {
     border: solid 1px #7D99DD;
     box-sizing: border-box;
     right: 40px;
-    position: absolute;
+    /* position: absolute; */
+    margin-left: 40px;
 }
 
 button {
@@ -129,8 +134,12 @@ button {
   border-radius: 4px;
   letter-spacing: 1px;
   display: block;
-  margin: 20px auto;
+  /* margin: 20px auto; */
   cursor: pointer;
+  /* float: right; */
+  margin-left: 303px;
+  margin-top: 16px;
+  margin-bottom: 10px;
 }
 
 .selected-box span {
@@ -145,6 +154,7 @@ button {
     padding-right: 10px;
     box-sizing: border-box;
     vertical-align: middle;
+    color: #000;
 }
 
 .background {
@@ -155,9 +165,15 @@ button {
 
 header {
 	padding: 21px 26px;
-	font-size: 30px;
+	font-size: 36px;
 	color: #1b1b1b;
 	background-color:white;
+	/* border-bottom: 4px dashed rgb(69, 120, 255); */
+}
+.headerBorder{
+	border-bottom: 3px dashed rgb(136, 168, 255);
+	/* height:2px; */
+	/* width:100%; */
 }
 
 .left {
@@ -176,14 +192,36 @@ header {
 }
 
 #outputMeta {
-    position: absolute;    
+    /*position: absolute;*/    
     top: 130px;
     right: 40px;
-    background-color: white;
+    background-color: rgb(61, 61, 61);
     padding:30px;
     border-radius: 5px;
-    border: solid 1px #D5D5D5;
+    /* border: solid 1px #4578FF; */
     width: 400px;
     box-sizing: border-box;
     margin: 0;
+    margin-left: 40px;
+    margin-top: 40px;
+    color: #FAFAFA;
+}
+
+.subHeading {
+	margin-left:40px;
+	padding:40px 0;
+	width: 400px;
+}
+
+#fill .explainForm {
+	padding: 10px 10px 26px;
+}
+
+#doneView {
+	margin: 0px auto 20px;
+}
+
+#view .explainView {
+	margin: 30px auto 20px;
+	text-align: center;
 }
