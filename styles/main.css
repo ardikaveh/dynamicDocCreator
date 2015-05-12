@@ -54,9 +54,8 @@ body {
 
 button#doneCapture {
     right: 40px;
-    top: 70px;
+    top: 50px;
     position: absolute;
-    cursor: pointer;
 }
 
 button#doneFill{
@@ -129,6 +128,9 @@ button {
   border: solid 0 #e3edf4;
   border-radius: 4px;
   letter-spacing: 1px;
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
 }
 
 .selected-box span {
